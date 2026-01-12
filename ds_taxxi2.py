@@ -5,10 +5,9 @@ import logging.handlers
 from datetime import datetime
 
 # Configuración de TAXII
-TAXII_API = "https://taxii.fsisac.com/ctixapi/ctix2/"
+TAXII_API = "https://taxii.fsisac.com/ctixapi/ctix21/"
 USERNAME = "0aa84b5f-27ab-40af-8783-ee9afb1448e8"
-PASSWORD = "e418faa7-9336-4c28-96af-80a99af9858c"
-TAXII_VERSION = "2.1"
+PASSWORD = "418faa7-9336-4c28-96af-80a99af9858c"
 
 # Archivos
 COLLECTIONS_FILE = "collections.json"
@@ -25,7 +24,7 @@ def load_collections(file_path):
     return data.get("collections", [])
 
 def get_taxii_indicators(collection_id):
-    headers = {"Accept": f"application/vnd.oasis.stix+json;version={TAXII_VERSION}"}
+    headers = {"Accept": "application/taxii+json;version=2.1"}
     url = f"{TAXII_API}collections/{collection_id}/objects/"
     response = requests.get(url, auth=(USERNAME, PASSWORD), headers=headers, verify=True)
 
