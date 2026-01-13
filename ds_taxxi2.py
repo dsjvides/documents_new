@@ -24,7 +24,10 @@ def load_collections(file_path):
     return data.get("collections", [])
 
 def get_taxii_indicators(collection_id):
-    headers = {"Accept": "application/taxii+json;version=2.1"}
+    headers = {
+        "Accept": "application/taxii+json;version=2.1",
+        "User-Agent": "curl/7.68.0" 
+    }
     url = f"{TAXII_API}collections/{collection_id}/objects/"
     response = requests.get(url, auth=(USERNAME, PASSWORD), headers=headers, verify=True)
 
